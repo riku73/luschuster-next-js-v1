@@ -1,103 +1,223 @@
-import Image from "next/image";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { CheckCircle, Phone, Network, Wrench, HeadphonesIcon, Users, Award, Shield } from "lucide-react"
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const services = [
+    {
+      title: "Télécommunications d'entreprise",
+      description: "Standards téléphoniques modernes, lignes dédiées et solutions mobiles adaptées à vos besoins.",
+      icon: Phone,
+      href: "/services/telecommunications"
+    },
+    {
+      title: "Infrastructure réseau",
+      description: "Conception, déploiement et optimisation de votre infrastructure réseau d'entreprise.",
+      icon: Network,
+      href: "/services/infrastructure"
+    },
+    {
+      title: "Solutions VoIP",
+      description: "Migration vers IP, softphones et intégration CRM pour moderniser vos communications.",
+      icon: HeadphonesIcon,
+      href: "/services/voip"
+    },
+    {
+      title: "Maintenance et support",
+      description: "Support technique 24/7, contrats de maintenance et monitoring proactif de vos équipements.",
+      icon: Wrench,
+      href: "/services/maintenance"
+    }
+  ]
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const whyChooseUs = [
+    {
+      title: "37 ans d'expérience",
+      description: "Établie en 1988, notre expertise reconnue au Luxembourg",
+      icon: Award
+    },
+    {
+      title: "Techniciens agréés P&T",
+      description: "Certifications officielles et formation continue",
+      icon: Shield
+    },
+    {
+      title: "Support local",
+      description: "Proximité et connaissance du marché luxembourgeois",
+      icon: Users
+    }
+  ]
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Expert en télécommunications d'entreprise
+              <span className="block text-orange-400">depuis 1988</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              Solutions innovantes pour moderniser vos communications d'entreprise au Luxembourg. 
+              Techniciens agréés P&T, support 24/7 et expertise reconnue.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
+                <Link href="/quote">Demande de devis gratuit</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
+                <Link href="/contact">Nous contacter</Link>
+              </Button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Nos services télécommunications
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Des solutions complètes pour répondre à tous vos besoins en télécommunications d'entreprise
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
+                    <service.icon className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center mb-4">
+                    {service.description}
+                  </CardDescription>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href={service.href}>En savoir plus</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Pourquoi choisir Luschuster ?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Une expertise reconnue et un service de proximité pour accompagner votre entreprise
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {whyChooseUs.map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-orange-100 rounded-full w-fit">
+                  <item.icon className="h-8 w-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 bg-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Notre processus
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Une approche structurée pour garantir le succès de votre projet
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Audit gratuit</h3>
+                <p className="text-gray-600 text-sm">Analyse de votre infrastructure existante</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Proposition</h3>
+                <p className="text-gray-600 text-sm">Devis détaillé et recommandations personnalisées</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Installation</h3>
+                <p className="text-gray-600 text-sm">Déploiement par nos techniciens certifiés</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Support</h3>
+                <p className="text-gray-600 text-sm">Maintenance et support technique continus</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Prêt à moderniser vos télécommunications ?
+          </h2>
+          <p className="text-xl mb-8 text-blue-100">
+            Demandez votre audit gratuit et découvrez comment optimiser vos communications d'entreprise
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600">
+              <Link href="/quote">Demander un devis</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
+              <Link href="/contact">Planifier un audit</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Indicators */}
+      <section className="py-12 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center items-center gap-8 text-center text-gray-600">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <span>Agréé P&T Luxembourg</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <span>Conformité RGPD</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <span>Support 24/7</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <span>37 ans d'expérience</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }

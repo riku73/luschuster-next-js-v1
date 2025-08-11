@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  luschuster-website:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    
+  # Development service (optional)
+  luschuster-dev:
+    build: 
+      context: .
+      target: base
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+    profiles: ["dev"]
