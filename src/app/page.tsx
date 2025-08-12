@@ -141,7 +141,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 backdrop-blur-sm h-14 px-8 text-lg font-semibold transition-all duration-300">
+              <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 backdrop-blur-sm h-14 px-8 text-lg font-semibold transition-all duration-300">
                 <Link href="/contact" className="flex items-center">
                   <Phone className="mr-2 h-5 w-5" />
                   Nous contacter
@@ -400,7 +400,7 @@ export default function Home() {
                   Demander un audit gratuit
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 h-14 px-8 text-lg font-semibold transition-all duration-300">
+              <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 h-14 px-8 text-lg font-semibold transition-all duration-300">
                 <Link href="/contact" className="flex items-center">
                   <Clock className="mr-2 h-5 w-5" />
                   Planifier un rendez-vous

@@ -203,7 +203,7 @@ export default function Services() {
             <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600">
               <Link href="/quote">Demander un devis</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 transition-all duration-300">
+            <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 transition-all duration-300">
               <Link href="/contact">Planifier un audit gratuit</Link>
             </Button>
           </div>
