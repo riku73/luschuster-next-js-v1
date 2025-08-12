@@ -174,7 +174,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 pt-32">
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 pt-40">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -372,7 +372,8 @@ export default function Contact() {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 font-semibold h-12 disabled:opacity-50"
                     disabled={isSubmitting || !csrfToken}
                     aria-describedby="submit-status"
                   >
@@ -418,7 +419,7 @@ export default function Contact() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button asChild className="w-full bg-orange-500 hover:bg-orange-600">
+                    <Button asChild size="lg" className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 font-semibold h-12">
                       <Link href="/quote">
                         Planifier un audit gratuit
                       </Link>

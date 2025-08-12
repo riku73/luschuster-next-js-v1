@@ -70,7 +70,7 @@ export default function Services() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 pt-32">
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 pt-40">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -109,10 +109,10 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                  <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
-                    <Link href={service.href}>
+                  <Button asChild size="lg" className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold group-hover:shadow-xl transition-all duration-300 h-12">
+                    <Link href={service.href} className="flex items-center justify-center">
                       Découvrir ce service
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
                 </CardContent>

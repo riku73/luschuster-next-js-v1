@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
 
 export function Footer() {
@@ -8,7 +9,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Luschuster Communications SA</h3>
+            <div className="mb-4">
+              <Image
+                src="/luschuster-logo.png"
+                alt="Luschuster Communications SA"
+                width={180}
+                height={54}
+                className="h-12 w-auto mb-2"
+              />
+            </div>
             <p className="text-gray-300 mb-4">
               Expert en télécommunications d'entreprise au Luxembourg depuis 1988. 
               Solutions innovantes et support technique de qualité.

@@ -25,6 +25,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_LU",
     siteName: "Luschuster Communications",
+    images: [
+      {
+        url: "/luschuster-logo.png",
+        width: 1080,
+        height: 720,
+        alt: "Luschuster Communications SA Logo",
+      },
+    ],
   },
   robots: {
     index: true,

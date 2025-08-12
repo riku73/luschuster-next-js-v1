@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -93,17 +94,18 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center"
           >
-            <Link href="/" className={`font-bold transition-all duration-300 ${
-              isScrolled 
-                ? 'text-2xl text-blue-900' 
-                : 'text-2xl md:text-3xl text-white'
-            }`}>
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Luschuster
-              </span>
-              <span className={isScrolled ? 'text-gray-700' : 'text-blue-100'}>
-                {' '}Communications
-              </span>
+            <Link href="/" className="flex items-center transition-all duration-300">
+              <Image
+                src="/luschuster-logo.png"
+                alt="Luschuster Communications"
+                width={200}
+                height={60}
+                className={`transition-all duration-300 object-contain ${
+                  isScrolled ? 'h-12 w-auto' : 'h-14 w-auto'
+                }`}
+                priority
+                style={{ maxHeight: isScrolled ? '3rem' : '3.5rem' }}
+              />
             </Link>
           </motion.div>
 

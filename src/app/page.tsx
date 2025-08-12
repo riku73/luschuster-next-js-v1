@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden pt-32">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden pt-40">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -inset-10 opacity-30">
@@ -134,7 +134,7 @@ export default function Home() {
               expertise reconnue et support technique d'exception.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-24">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-32">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="/quote" className="flex items-center">
                   Demande de devis gratuit
@@ -150,7 +150,7 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
