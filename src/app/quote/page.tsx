@@ -156,7 +156,7 @@ export default function Quote() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-16">
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-16 pt-32">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -478,6 +478,7 @@ export default function Quote() {
                   variant="outline"
                   onClick={prevStep}
                   disabled={currentStep === 1}
+                  className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white disabled:opacity-50"
                 >
                   Précédent
                 </Button>

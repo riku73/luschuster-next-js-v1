@@ -86,8 +86,6 @@ export function useFormValidation<T extends z.ZodType>({
 
   const getFieldProps = useCallback((name: string) => ({
     value: typeof fields[name]?.value === 'string' ? fields[name].value : '',
-    error: fields[name]?.error,
-    touched: fields[name]?.touched,
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       updateField(name, e.target.value)
     },
@@ -108,8 +106,6 @@ export function useFormValidation<T extends z.ZodType>({
     checked: itemValue 
       ? Array.isArray(fields[name]?.value) && (fields[name].value as string[]).includes(itemValue)
       : Boolean(fields[name]?.value),
-    error: fields[name]?.error,
-    touched: fields[name]?.touched,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
       if (itemValue) {
         // Array checkbox (multiple selection)
@@ -124,6 +120,10 @@ export function useFormValidation<T extends z.ZodType>({
       }
     }
   }), [fields, updateField])
+
+  // Helper functions to get field state
+  const getFieldError = useCallback((name: string) => fields[name]?.error, [fields])
+  const isFieldTouched = useCallback((name: string) => Boolean(fields[name]?.touched), [fields])
 
   const reset = useCallback(() => {
     const resetFields: Record<string, FormField> = {}
@@ -144,6 +144,8 @@ export function useFormValidation<T extends z.ZodType>({
     fields,
     getFieldProps,
     getCheckboxProps,
+    getFieldError,
+    isFieldTouched,
     updateField,
     validateAllFields,
     reset,

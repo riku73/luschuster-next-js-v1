@@ -31,6 +31,8 @@ export default function Contact() {
   
   const {
     getFieldProps,
+    getFieldError,
+    isFieldTouched,
     validateAllFields,
     reset,
     isSubmitting,
@@ -160,6 +162,7 @@ export default function Contact() {
               reset()
             }}
             variant="outline"
+            className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
           >
             Envoyer un autre message
           </Button>
@@ -171,7 +174,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 pt-32">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -258,12 +261,12 @@ export default function Contact() {
                         required
                         {...getFieldProps('name')}
                         placeholder="Votre nom"
-                        aria-describedby={getFieldProps('name').error ? 'name-error' : undefined}
-                        className={getFieldProps('name').error ? 'border-red-500' : ''}
+                        aria-describedby={getFieldError('name') ? 'name-error' : undefined}
+                        className={getFieldError('name') ? 'border-red-500' : ''}
                       />
-                      {getFieldProps('name').error && (
+                      {getFieldError('name') && isFieldTouched('name') && (
                         <p id="name-error" className="text-sm text-red-600 mt-1" role="alert">
-                          {getFieldProps('name').error}
+                          {getFieldError('name')}
                         </p>
                       )}
                     </div>
@@ -276,12 +279,12 @@ export default function Contact() {
                         required
                         {...getFieldProps('email')}
                         placeholder="votre@email.com"
-                        aria-describedby={getFieldProps('email').error ? 'email-error' : undefined}
-                        className={getFieldProps('email').error ? 'border-red-500' : ''}
+                        aria-describedby={getFieldError('email') ? 'email-error' : undefined}
+                        className={getFieldError('email') ? 'border-red-500' : ''}
                       />
-                      {getFieldProps('email').error && (
+                      {getFieldError('email') && isFieldTouched('email') && (
                         <p id="email-error" className="text-sm text-red-600 mt-1" role="alert">
-                          {getFieldProps('email').error}
+                          {getFieldError('email')}
                         </p>
                       )}
                     </div>
@@ -296,12 +299,12 @@ export default function Contact() {
                         type="tel"
                         {...getFieldProps('phone')}
                         placeholder="+352 XXX XXX XXX"
-                        aria-describedby={getFieldProps('phone').error ? 'phone-error' : undefined}
-                        className={getFieldProps('phone').error ? 'border-red-500' : ''}
+                        aria-describedby={getFieldError('phone') ? 'phone-error' : undefined}
+                        className={getFieldError('phone') ? 'border-red-500' : ''}
                       />
-                      {getFieldProps('phone').error && (
+                      {getFieldError('phone') && isFieldTouched('phone') && (
                         <p id="phone-error" className="text-sm text-red-600 mt-1" role="alert">
-                          {getFieldProps('phone').error}
+                          {getFieldError('phone')}
                         </p>
                       )}
                     </div>
@@ -313,12 +316,12 @@ export default function Contact() {
                         type="text"
                         {...getFieldProps('company')}
                         placeholder="Nom de votre entreprise"
-                        aria-describedby={getFieldProps('company').error ? 'company-error' : undefined}
-                        className={getFieldProps('company').error ? 'border-red-500' : ''}
+                        aria-describedby={getFieldError('company') ? 'company-error' : undefined}
+                        className={getFieldError('company') ? 'border-red-500' : ''}
                       />
-                      {getFieldProps('company').error && (
+                      {getFieldError('company') && isFieldTouched('company') && (
                         <p id="company-error" className="text-sm text-red-600 mt-1" role="alert">
-                          {getFieldProps('company').error}
+                          {getFieldError('company')}
                         </p>
                       )}
                     </div>
@@ -331,8 +334,8 @@ export default function Contact() {
                       name="subject"
                       required
                       {...getFieldProps('subject')}
-                      aria-describedby={getFieldProps('subject').error ? 'subject-error' : undefined}
-                      className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${getFieldProps('subject').error ? 'border-red-500' : ''}`}
+                      aria-describedby={getFieldError('subject') ? 'subject-error' : undefined}
+                      className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${getFieldError('subject') ? 'border-red-500' : ''}`}
                     >
                       <option value="">Sélectionnez un sujet</option>
                       <option value="devis">Demande de devis</option>
@@ -341,9 +344,9 @@ export default function Contact() {
                       <option value="maintenance">Maintenance</option>
                       <option value="autre">Autre</option>
                     </select>
-                    {getFieldProps('subject').error && (
+                    {getFieldError('subject') && isFieldTouched('subject') && (
                       <p id="subject-error" className="text-sm text-red-600 mt-1" role="alert">
-                        {getFieldProps('subject').error}
+                        {getFieldError('subject')}
                       </p>
                     )}
                   </div>
@@ -357,12 +360,12 @@ export default function Contact() {
                       {...getFieldProps('message')}
                       placeholder="Décrivez votre projet ou votre demande..."
                       rows={5}
-                      aria-describedby={getFieldProps('message').error ? 'message-error' : undefined}
-                      className={getFieldProps('message').error ? 'border-red-500' : ''}
+                      aria-describedby={getFieldError('message') ? 'message-error' : undefined}
+                      className={getFieldError('message') ? 'border-red-500' : ''}
                     />
-                    {getFieldProps('message').error && (
+                    {getFieldError('message') && isFieldTouched('message') && (
                       <p id="message-error" className="text-sm text-red-600 mt-1" role="alert">
-                        {getFieldProps('message').error}
+                        {getFieldError('message')}
                       </p>
                     )}
                   </div>
