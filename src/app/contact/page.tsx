@@ -162,7 +162,7 @@ export default function Contact() {
               reset()
             }}
             variant="outline"
-            className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white"
+            className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
           >
             Envoyer un autre message
           </Button>

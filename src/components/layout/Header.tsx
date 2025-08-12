@@ -145,7 +145,7 @@ export function Header() {
                 className={`font-semibold transition-all duration-300 shadow-lg hover:shadow-xl ${
                   isScrolled
                     ? 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white'
-                    : 'bg-white text-blue-900 hover:bg-blue-50'
+                    : 'bg-white text-blue-900 hover:bg-gray-100 hover:text-blue-800'
                 }`}
               >
                 <Link href="/quote" className="flex items-center">
