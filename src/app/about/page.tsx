@@ -83,10 +83,42 @@ export default function About() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               À propos de Luschuster Communications
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100">
+            <p className="text-xl md:text-2xl text-blue-100 mb-12">
               37 ans d'expertise au service des entreprises luxembourgeoises. 
               Une passion pour l'innovation et l'excellence technique.
             </p>
+            
+            {/* Stats Badges */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-full mb-3">
+                  <Award className="w-6 h-6 text-blue-300" />
+                </div>
+                <div className="text-3xl font-bold text-white mb-1">37+</div>
+                <div className="text-blue-200 text-sm">Années d'expérience</div>
+              </div>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-full mb-3">
+                  <Users className="w-6 h-6 text-blue-300" />
+                </div>
+                <div className="text-3xl font-bold text-white mb-1">500+</div>
+                <div className="text-blue-200 text-sm">Entreprises clientes</div>
+              </div>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-full mb-3">
+                  <CheckCircle className="w-6 h-6 text-blue-300" />
+                </div>
+                <div className="text-3xl font-bold text-white mb-1">1200+</div>
+                <div className="text-blue-200 text-sm">Projets réalisés</div>
+              </div>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-full mb-3">
+                  <Shield className="w-6 h-6 text-blue-300" />
+                </div>
+                <div className="text-3xl font-bold text-white mb-1">99%</div>
+                <div className="text-blue-200 text-sm">Taux de satisfaction</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -120,28 +152,17 @@ export default function About() {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-gradient-to-br from-blue-100 to-orange-100 p-8 rounded-lg">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-blue-900 mb-2">37</div>
-                    <div className="text-sm text-gray-600 mb-4">Années d'expérience</div>
-                    
-                    <div className="grid grid-cols-2 gap-4 mt-6">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-orange-600">500+</div>
-                        <div className="text-xs text-gray-600">Entreprises clientes</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">24/7</div>
-                        <div className="text-xs text-gray-600">Support technique</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-green-600">15</div>
-                        <div className="text-xs text-gray-600">Techniciens experts</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-600">100%</div>
-                        <div className="text-xs text-gray-600">Au Luxembourg</div>
-                      </div>
+                <div className="bg-gray-200 rounded-lg overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                    alt="Équipe Luschuster Communications au travail" 
+                    className="w-full h-80 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-blue-900/20"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4">
+                      <h3 className="font-semibold text-gray-900 mb-1">Notre équipe d'experts</h3>
+                      <p className="text-sm text-gray-600">Techniciens certifiés et agréés P&T Luxembourg</p>
                     </div>
                   </div>
                 </div>

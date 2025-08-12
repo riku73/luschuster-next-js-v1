@@ -134,7 +134,7 @@ export default function Home() {
               expertise reconnue et support technique d'exception.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-24">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="/quote" className="flex items-center">
                   Demande de devis gratuit
@@ -241,7 +241,7 @@ export default function Home() {
                       ))}
                     </div>
                     
-                    <Button asChild className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 group-hover:shadow-lg transition-all">
+                    <Button asChild size="lg" className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold group-hover:shadow-xl transition-all duration-300 h-12">
                       <Link href={service.href} className="flex items-center justify-center">
                         Découvrir ce service
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

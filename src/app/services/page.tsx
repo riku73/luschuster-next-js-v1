@@ -193,10 +193,11 @@ export default function Services() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Besoin d'une solution sur mesure ?
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Besoin d'une solution
+            <span className="block text-blue-400">sur mesure ?</span>
           </h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
+          <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto">
             Nos experts analysent vos besoins et vous proposent la solution télécommunications la plus adaptée à votre entreprise
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
