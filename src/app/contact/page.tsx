@@ -1,43 +1,106 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from "lucide-react"
+import { useFormValidation } from "@/hooks/useFormValidation"
+import { useCSRF } from "@/hooks/useCSRF"
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères').max(100),
+  email: z.string().email('Adresse email invalide'),
+  phone: z.string().optional(),
+  company: z.string().max(200).optional(),
+  subject: z.enum(['devis', 'info', 'support', 'maintenance', 'autre']),
+  message: z.string().min(10, 'Le message doit contenir au moins 10 caractères').max(2000),
+})
+
+type ContactFormData = z.infer<typeof contactFormSchema>
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    subject: "",
-    message: ""
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const { csrfToken, loading: csrfLoading } = useCSRF()
+  
+  const {
+    getFieldProps,
+    validateAllFields,
+    reset,
+    isSubmitting,
+    setIsSubmitting,
+    hasErrors
+  } = useFormValidation<typeof contactFormSchema>({
+    schema: contactFormSchema,
+    initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      subject: '' as any,
+      message: ''
+    }
+  })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitError(null)
+    
+    if (!csrfToken) {
+      setSubmitError('Token de sécurité manquant. Veuillez rafraîchir la page.')
+      return
+    }
+    
+    const { isValid, values } = validateAllFields()
+    
+    if (!isValid) {
+      setSubmitError('Veuillez corriger les erreurs avant de continuer')
+      return
+    }
+    
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...values,
+          csrfToken
+        })
+      })
+      
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Erreur lors de l\'envoi du message')
+      }
+      
+      setIsSubmitted(true)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Une erreur inattendue s\'est produite')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+  
+  if (csrfLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <Skeleton className="h-8 w-48 mb-4 mx-auto" />
+          <Skeleton className="h-4 w-32 mx-auto" />
+        </div>
+      </div>
+    )
   }
 
   const contactInfo = [
@@ -93,14 +156,8 @@ export default function Contact() {
           <Button 
             onClick={() => {
               setIsSubmitted(false)
-              setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                company: "",
-                subject: "",
-                message: ""
-              })
+              setSubmitError(null)
+              reset()
             }}
             variant="outline"
           >
@@ -181,7 +238,16 @@ export default function Contact() {
                   Pour les urgences, appelez directement notre support.
                 </p>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                {submitError && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="flex items-center text-red-700">
+                      <AlertCircle className="h-5 w-5 mr-2" />
+                      <span>{submitError}</span>
+                    </div>
+                  </div>
+                )}
+                
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="name">Nom complet *</Label>
@@ -190,10 +256,16 @@ export default function Contact() {
                         name="name"
                         type="text"
                         required
-                        value={formData.name}
-                        onChange={handleInputChange}
+                        {...getFieldProps('name')}
                         placeholder="Votre nom"
+                        aria-describedby={getFieldProps('name').error ? 'name-error' : undefined}
+                        className={getFieldProps('name').error ? 'border-red-500' : ''}
                       />
+                      {getFieldProps('name').error && (
+                        <p id="name-error" className="text-sm text-red-600 mt-1" role="alert">
+                          {getFieldProps('name').error}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="email">Email *</Label>
@@ -202,10 +274,16 @@ export default function Contact() {
                         name="email"
                         type="email"
                         required
-                        value={formData.email}
-                        onChange={handleInputChange}
+                        {...getFieldProps('email')}
                         placeholder="votre@email.com"
+                        aria-describedby={getFieldProps('email').error ? 'email-error' : undefined}
+                        className={getFieldProps('email').error ? 'border-red-500' : ''}
                       />
+                      {getFieldProps('email').error && (
+                        <p id="email-error" className="text-sm text-red-600 mt-1" role="alert">
+                          {getFieldProps('email').error}
+                        </p>
+                      )}
                     </div>
                   </div>
                   
@@ -216,10 +294,16 @@ export default function Contact() {
                         id="phone"
                         name="phone"
                         type="tel"
-                        value={formData.phone}
-                        onChange={handleInputChange}
+                        {...getFieldProps('phone')}
                         placeholder="+352 XXX XXX XXX"
+                        aria-describedby={getFieldProps('phone').error ? 'phone-error' : undefined}
+                        className={getFieldProps('phone').error ? 'border-red-500' : ''}
                       />
+                      {getFieldProps('phone').error && (
+                        <p id="phone-error" className="text-sm text-red-600 mt-1" role="alert">
+                          {getFieldProps('phone').error}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="company">Entreprise</Label>
@@ -227,10 +311,16 @@ export default function Contact() {
                         id="company"
                         name="company"
                         type="text"
-                        value={formData.company}
-                        onChange={handleInputChange}
+                        {...getFieldProps('company')}
                         placeholder="Nom de votre entreprise"
+                        aria-describedby={getFieldProps('company').error ? 'company-error' : undefined}
+                        className={getFieldProps('company').error ? 'border-red-500' : ''}
                       />
+                      {getFieldProps('company').error && (
+                        <p id="company-error" className="text-sm text-red-600 mt-1" role="alert">
+                          {getFieldProps('company').error}
+                        </p>
+                      )}
                     </div>
                   </div>
                   
@@ -240,9 +330,9 @@ export default function Contact() {
                       id="subject"
                       name="subject"
                       required
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      {...getFieldProps('subject')}
+                      aria-describedby={getFieldProps('subject').error ? 'subject-error' : undefined}
+                      className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${getFieldProps('subject').error ? 'border-red-500' : ''}`}
                     >
                       <option value="">Sélectionnez un sujet</option>
                       <option value="devis">Demande de devis</option>
@@ -251,6 +341,11 @@ export default function Contact() {
                       <option value="maintenance">Maintenance</option>
                       <option value="autre">Autre</option>
                     </select>
+                    {getFieldProps('subject').error && (
+                      <p id="subject-error" className="text-sm text-red-600 mt-1" role="alert">
+                        {getFieldProps('subject').error}
+                      </p>
+                    )}
                   </div>
                   
                   <div>
@@ -259,20 +354,30 @@ export default function Contact() {
                       id="message"
                       name="message"
                       required
-                      value={formData.message}
-                      onChange={handleInputChange}
+                      {...getFieldProps('message')}
                       placeholder="Décrivez votre projet ou votre demande..."
                       rows={5}
+                      aria-describedby={getFieldProps('message').error ? 'message-error' : undefined}
+                      className={getFieldProps('message').error ? 'border-red-500' : ''}
                     />
+                    {getFieldProps('message').error && (
+                      <p id="message-error" className="text-sm text-red-600 mt-1" role="alert">
+                        {getFieldProps('message').error}
+                      </p>
+                    )}
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-blue-600 hover:bg-blue-700"
-                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+                    disabled={isSubmitting || !csrfToken}
+                    aria-describedby="submit-status"
                   >
                     {isSubmitting ? (
-                      <>Envoi en cours...</>
+                      <>
+                        <div className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full"></div>
+                        Envoi en cours...
+                      </>
                     ) : (
                       <>
                         <Send className="mr-2 h-4 w-4" />
@@ -280,6 +385,9 @@ export default function Contact() {
                       </>
                     )}
                   </Button>
+                  <div id="submit-status" className="sr-only" aria-live="polite">
+                    {isSubmitting ? 'Envoi du message en cours' : 'Formulaire prêt'}
+                  </div>
                 </form>
               </div>
               

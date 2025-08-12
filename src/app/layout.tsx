@@ -42,8 +42,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <a href="#main-content" className="sr-only focus:not-sr-only">
+          Aller au contenu principal
+        </a>
         <Header />
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow" role="main">
           {children}
         </main>
         <Footer />
