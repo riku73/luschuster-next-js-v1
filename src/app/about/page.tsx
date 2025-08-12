@@ -338,11 +338,11 @@ export default function About() {
           <p className="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
             Rejoignez les 500+ entreprises qui font confiance à notre expertise pour leurs télécommunications
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 h-14 px-8 text-lg font-semibold shadow-2xl">
               <Link href="/quote">Demander un devis</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 transition-all duration-300">
+            <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 h-14 px-8 text-lg font-semibold transition-all duration-300">
               <Link href="/contact">Nous rencontrer</Link>
             </Button>
           </div>
