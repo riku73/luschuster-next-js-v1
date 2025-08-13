@@ -123,9 +123,9 @@ export default function About() {
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Depuis 1988, nous accompagnons les entreprises luxembourgeoises dans leur transformation digitale. 
-              <strong className="text-white"> Une passion pour l'innovation</strong> 
-              et un engagement total pour l'excellence technique.
+              Seul opérateur familial agréé P&T depuis 1988. Plus de 500 entreprises luxembourgeoises 
+              <strong className="text-white"> nous font confiance pour leurs télécommunications</strong> 
+              - Découvrez pourquoi notre expertise fait la différence.
             </p>
 
             <div className="flex justify-center">

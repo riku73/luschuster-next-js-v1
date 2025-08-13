@@ -115,15 +115,15 @@ export default function Services() {
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Solutions complètes pour moderniser et optimiser vos communications d'entreprise au Luxembourg. 
-              <strong className="text-white"> De l'audit à la maintenance</strong>, 
-              nous accompagnons votre transformation digitale.
+              Seul opérateur familial agréé P&T depuis 37 ans au Luxembourg. Solutions complètes 
+              <strong className="text-white"> avec économies moyennes de 30% garanties</strong> 
+              - De l'audit gratuit à la maintenance 24/7.
             </p>
 
             <div className="flex justify-center">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="#services" className="flex items-center">
-                  Voir tous les services
+                  Découvrir nos solutions d'économies
                   <ArrowDown className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

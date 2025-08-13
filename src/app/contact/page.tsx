@@ -204,27 +204,27 @@ export default function Contact() {
           >
             <Badge className="mb-6 bg-blue-600/20 text-blue-100 border-blue-400/30 hover:bg-blue-600/30 transition-colors">
               <Clock className="w-4 h-4 mr-2" />
-              Réponse sous 24h
+              Experts agréés P&T Luxembourg
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
-              Parlons de votre
+              Consultation expert
               <br />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                projet ensemble
+                télécoms gratuite
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Notre équipe d'experts est à votre disposition pour répondre à vos questions 
-              et vous accompagner dans vos projets télécommunications. 
-              <strong className="text-white"> Audit gratuit sous 48h</strong>.
+              Bénéficiez de 37 ans d'expertise télécoms au Luxembourg. Techniciens agréés P&T 
+              à votre service pour optimiser vos communications d'entreprise. 
+              <strong className="text-white"> Réponse garantie sous 4h - Audit gratuit inclus</strong>.
             </p>
 
             <div className="flex justify-center">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="#contact-form" className="flex items-center">
-                  Nous contacter
+                  Planifier ma consultation gratuite
                   <ArrowDown className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

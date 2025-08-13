@@ -19,7 +19,7 @@ export default function Home() {
   const services = [
     {
       title: "Télécommunications d'entreprise",
-      description: "Solutions complètes de télécommunications adaptées aux besoins spécifiques de votre entreprise, incluant les standards téléphoniques modernes et les lignes dédiées haute performance.",
+      description: "Solutions télécommunications sur mesure pour entreprises luxembourgeoises - Installation et maintenance par techniciens agréés P&T depuis 37 ans. Réduisez vos coûts de 20% dès la première année.",
       icon: Phone,
       href: "/services/telecommunications",
       gradient: "from-blue-500 to-blue-600",
@@ -27,7 +27,7 @@ export default function Home() {
     },
     {
       title: "Infrastructure réseau",
-      description: "Conception, déploiement et maintenance d'infrastructures réseau robustes et évolutives pour accompagner la croissance de votre entreprise.",
+      description: "Infrastructure réseau haute performance - Garantie uptime 99.9% avec support Cisco Gold Partner et monitoring 24/7. Évolutivité garantie pour accompagner votre croissance.",
       icon: Network,
       href: "/services/infrastructure",
       gradient: "from-purple-500 to-purple-600",
@@ -35,7 +35,7 @@ export default function Home() {
     },
     {
       title: "Solutions VoIP",
-      description: "Migration complète vers la téléphonie IP avec des solutions innovantes qui révolutionnent vos communications d'entreprise.",
+      description: "Migration VoIP sans interruption - Réduisez vos coûts de 40% tout en améliorant la qualité audio HD et la mobilité de vos équipes. Migration progressive sur mesure.",
       icon: HeadphonesIcon,
       href: "/services/voip",
       gradient: "from-green-500 to-green-600",
@@ -43,7 +43,7 @@ export default function Home() {
     },
     {
       title: "Maintenance et support",
-      description: "Service de maintenance proactive et support technique expert disponible 24/7 pour garantir la continuité de vos activités.",
+      description: "Support technique expert 24/7 au Luxembourg - Interventions d'urgence sous 4h garanties. Continuité d'activité assurée avec monitoring proactif et SLA 99.9%.",
       icon: Wrench,
       href: "/services/maintenance",
       gradient: "from-orange-500 to-orange-600",
@@ -121,30 +121,30 @@ export default function Home() {
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
-              L'avenir des<br />
+              37 ans d'expertise<br />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                télécommunications
+                télécoms Luxembourg
               </span><br />
-              commence ici
+              au service des entreprises
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Transformez vos communications d'entreprise avec nos solutions innovantes. 
-              <strong className="text-white"> Techniciens agréés P&T Luxembourg</strong>, 
-              expertise reconnue et support technique d'exception.
+              Réduisez vos coûts télécoms de 30% et sécurisez vos communications avec l'expertise du 
+              <strong className="text-white"> seul opérateur familial agréé P&T depuis 1988</strong>. 
+              Audit gratuit sous 48h pour optimiser votre infrastructure.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-32">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="/quote" className="flex items-center">
-                  Demande de devis gratuit
+                  Audit télécoms gratuit - Découvrez vos économies
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 backdrop-blur-sm h-14 px-8 text-lg font-semibold transition-all duration-300">
                 <Link href="/contact" className="flex items-center">
                   <Phone className="mr-2 h-5 w-5" />
-                  Nous contacter
+                  Parlons de votre projet - Réponse sous 4h
                 </Link>
               </Button>
             </div>
@@ -385,25 +385,25 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Prêt à révolutionner vos
-              <span className="block text-blue-400">télécommunications ?</span>
+              Rejoignez 500+ entreprises
+              <span className="block text-blue-400">qui maîtrisent leurs télécoms</span>
             </h2>
             <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto">
-              Rejoignez les 500+ entreprises qui font confiance à notre expertise. 
-              Demandez votre audit gratuit et découvrez le potentiel de vos communications.
+              Seul opérateur familial agréé P&T Luxembourg depuis 37 ans. 
+              Audit gratuit sous 48h - Découvrez vos économies potentielles sans engagement.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="/quote" className="flex items-center">
                   <TrendingUp className="mr-2 h-5 w-5" />
-                  Demander un audit gratuit
+                  Audit télécoms gratuit sous 48h
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-white text-blue-900 bg-white hover:bg-gray-100 hover:text-blue-800 h-14 px-8 text-lg font-semibold transition-all duration-300">
                 <Link href="/contact" className="flex items-center">
                   <Clock className="mr-2 h-5 w-5" />
-                  Planifier un rendez-vous
+                  Consultation expert - Réponse sous 4h
                 </Link>
               </Button>
             </div>
@@ -411,15 +411,15 @@ export default function Home() {
             <div className="flex flex-wrap justify-center items-center gap-8 text-blue-200">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>Audit gratuit sous 48h</span>
+                <span>Seuls 12 opérateurs agréés P&T au Luxembourg</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>Devis personnalisé</span>
+                <span>Satisfaction garantie ou intervention gratuite</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>Support premium inclus</span>
+                <span>Support 24/7 inclus pendant 3 mois</span>
               </div>
             </div>
           </motion.div>

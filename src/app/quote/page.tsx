@@ -187,38 +187,38 @@ export default function Quote() {
           >
             <Badge className="mb-6 bg-blue-600/20 text-blue-100 border-blue-400/30 hover:bg-blue-600/30 transition-colors">
               <CheckCircle className="w-4 h-4 mr-2" />
-              Devis gratuit et sans engagement
+              Audit gratuit sous 48h - Sans engagement
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
-              Votre devis
+              Découvrez vos économies
               <br />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                personnalisé
+                télécoms potentielles
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Obtenez une proposition personnalisée pour votre projet télécommunications. 
-              <strong className="text-white"> Audit gratuit inclus</strong> 
-              et accompagnement sur mesure.
+              Audit télécoms gratuit par nos experts agréés P&T Luxembourg. 
+              <strong className="text-white"> Économies moyennes de 30% identifiées</strong> 
+              dès la première consultation - Réponse sous 24h garantie.
             </p>
 
             <div className="flex justify-center items-center space-x-8 text-blue-200 mb-8">
               <div className="flex items-center">
                 <Clock className="h-5 w-5 mr-2 text-blue-300" />
-                <span>Réponse sous 24h</span>
+                <span>Audit sous 48h</span>
               </div>
               <div className="flex items-center">
                 <Award className="h-5 w-5 mr-2 text-blue-300" />
-                <span>Audit gratuit inclus</span>
+                <span>Techniciens agréés P&T</span>
               </div>
             </div>
 
             <div className="flex justify-center">
               <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
                 <Link href="#quote-form" className="flex items-center">
-                  Commencer le devis
+                  Démarrer mon audit gratuit (2 min)
                   <ArrowDown className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
