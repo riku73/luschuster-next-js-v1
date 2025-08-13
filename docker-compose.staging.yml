@@ -1,0 +1,62 @@
+# EXAMPLE Staging Environment Configuration
+# This demonstrates how you'd set up a staging environment
+# Currently just an example - won't affect your current setup
+
+version: '3.8'
+
+services:
+  # Staging Website
+  luschuster-website-staging:
+    build: .
+    ports:
+      - "3001:3000"  # Different port to avoid conflicts
+    environment:
+      - NODE_ENV=staging
+      - NEXT_PUBLIC_SITE_URL=https://staging.luschuster.lu
+      - NEXT_PUBLIC_API_URL=https://api-staging.luschuster.lu
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.luschuster-staging.rule=Host(`staging.luschuster.lu`)"
+      - "traefik.http.routers.luschuster-staging.tls=true"
+    networks:
+      - staging-network
+    restart: unless-stopped
+
+  # Staging Database (if needed)
+  postgres-staging:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: luschuster_staging
+      POSTGRES_USER: staging_user
+      POSTGRES_PASSWORD: ${STAGING_DB_PASSWORD}
+    volumes:
+      - staging_db_data:/var/lib/postgresql/data
+    networks:
+      - staging-network
+    restart: unless-stopped
+
+  # Monitoring for Staging
+  monitoring:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - staging-network
+
+volumes:
+  staging_db_data:
+
+networks:
+  staging-network:
+    driver: bridge
+
+# How to use:
+# docker-compose -f docker-compose.staging.yml up -d
+# 
+# This would create:
+# ✅ Staging site at http://localhost:3001
+# ✅ Separate database for testing
+# ✅ Monitoring dashboard
+# ✅ Complete isolation from production
