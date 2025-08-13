@@ -1,16 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, Upload, FileText, Clock, Award } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { CheckCircle, Upload, FileText, Clock, Award, Zap, ArrowDown } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Quote() {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
   const [formData, setFormData] = useState({
     // Company info
     companyName: "",
@@ -156,26 +164,66 @@ export default function Quote() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-16 pt-40">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Demande de devis
+      <section className="relative py-32 md:py-40 flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden">
+        {/* Simplified Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -inset-10 opacity-20">
+            <div className="absolute top-1/4 right-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-700"></div>
+          </div>
+        </div>
+
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 opacity-20" 
+             style={{
+               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+             }}
+        ></div>
+
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <Badge className="mb-6 bg-blue-600/20 text-blue-100 border-blue-400/30 hover:bg-blue-600/30 transition-colors">
+              <CheckCircle className="w-4 h-4 mr-2" />
+              Devis gratuit et sans engagement
+            </Badge>
+            
+            <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
+              Votre devis
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                personnalisé
+              </span>
             </h1>
-            <p className="text-xl text-blue-100 mb-6">
-              Obtenez une proposition personnalisée pour votre projet télécommunications
+            
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Obtenez une proposition personnalisée pour votre projet télécommunications. 
+              <strong className="text-white"> Audit gratuit inclus</strong> 
+              et accompagnement sur mesure.
             </p>
-            <div className="flex justify-center items-center space-x-4 text-sm">
+
+            <div className="flex justify-center items-center space-x-8 text-blue-200 mb-8">
               <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-1" />
+                <Clock className="h-5 w-5 mr-2 text-blue-300" />
                 <span>Réponse sous 24h</span>
               </div>
               <div className="flex items-center">
-                <Award className="h-4 w-4 mr-1" />
+                <Award className="h-5 w-5 mr-2 text-blue-300" />
                 <span>Audit gratuit inclus</span>
               </div>
             </div>
-          </div>
+
+            <div className="flex justify-center">
+              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
+                <Link href="#quote-form" className="flex items-center">
+                  Commencer le devis
+                  <ArrowDown className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -212,7 +260,7 @@ export default function Quote() {
       </div>
 
       {/* Form */}
-      <section className="py-12">
+      <section id="quote-form" className="py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <form onSubmit={handleSubmit}>
@@ -509,31 +557,55 @@ export default function Quote() {
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-12 bg-white">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="mx-auto mb-4 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-blue-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Réponse rapide</h3>
-                <p className="text-gray-600 text-sm">Nous vous contactons sous 24h ouvrées</p>
-              </div>
-              <div>
-                <div className="mx-auto mb-4 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <Award className="h-6 w-6 text-green-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Audit gratuit</h3>
-                <p className="text-gray-600 text-sm">Analyse de votre infrastructure sans engagement</p>
-              </div>
-              <div>
-                <div className="mx-auto mb-4 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-orange-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Devis détaillé</h3>
-                <p className="text-gray-600 text-sm">Proposition technique et commerciale complète</p>
-              </div>
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <Badge className="mb-6 bg-green-50 text-green-700 border-green-200">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Nos Engagements
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Pourquoi nous choisir ?
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Des garanties solides et un service d'exception pour votre projet télécommunications
+              </p>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { icon: Clock, title: "Réponse rapide", description: "Nous vous contactons sous 24h ouvrées", gradient: "from-blue-500 to-blue-600" },
+                { icon: Award, title: "Audit gratuit", description: "Analyse de votre infrastructure sans engagement", gradient: "from-green-500 to-green-600" },
+                { icon: CheckCircle, title: "Devis détaillé", description: "Proposition technique et commerciale complète", gradient: "from-orange-500 to-orange-600" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  className="text-center group"
+                >
+                  <Card className="h-full p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-0 relative overflow-hidden">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                    <div className="relative z-10">
+                      <div className={`mx-auto mb-6 w-16 h-16 bg-gradient-to-br ${item.gradient} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <item.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-700 transition-colors">{item.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>

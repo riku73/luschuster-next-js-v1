@@ -8,8 +8,10 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle, Zap, ArrowDown } from "lucide-react"
+import { motion } from "framer-motion"
 import { useFormValidation } from "@/hooks/useFormValidation"
 import { useCSRF } from "@/hooks/useCSRF"
 
@@ -27,7 +29,12 @@ type ContactFormData = z.infer<typeof contactFormSchema>
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
   const { csrfToken, loading: csrfLoading } = useCSRF()
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
   
   const {
     getFieldProps,
@@ -174,52 +181,113 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20 pt-40">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Contactez-nous
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100">
-              Notre équipe d'experts est à votre disposition pour répondre à vos questions 
-              et vous accompagner dans vos projets télécommunications.
-            </p>
+      <section className="relative py-32 md:py-40 flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden">
+        {/* Simplified Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -inset-10 opacity-20">
+            <div className="absolute bottom-1/3 right-1/3 w-88 h-88 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
           </div>
+        </div>
+
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 opacity-20" 
+             style={{
+               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+             }}
+        ></div>
+
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <Badge className="mb-6 bg-blue-600/20 text-blue-100 border-blue-400/30 hover:bg-blue-600/30 transition-colors">
+              <Clock className="w-4 h-4 mr-2" />
+              Réponse sous 24h
+            </Badge>
+            
+            <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
+              Parlons de votre
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                projet ensemble
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Notre équipe d'experts est à votre disposition pour répondre à vos questions 
+              et vous accompagner dans vos projets télécommunications. 
+              <strong className="text-white"> Audit gratuit sous 48h</strong>.
+            </p>
+
+            <div className="flex justify-center">
+              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 h-14 px-8 text-lg font-semibold shadow-2xl">
+                <Link href="#contact-form" className="flex items-center">
+                  Nous contacter
+                  <ArrowDown className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Information */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Nos coordonnées
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <Badge className="mb-6 bg-blue-50 text-blue-700 border-blue-200">
+                <Phone className="w-4 h-4 mr-2" />
+                Nos Coordonnées
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Plusieurs moyens pour
+                <span className="block text-blue-600">nous joindre</span>
               </h2>
-              <p className="text-xl text-gray-600">
-                Plusieurs moyens pour nous joindre selon vos préférences
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choisissez le canal de communication qui vous convient le mieux. 
+                Notre équipe est à votre disposition pour répondre à vos questions
               </p>
-            </div>
+            </motion.div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
-                      <info.icon className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <CardTitle className="text-lg">{info.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-1">
-                      {info.details.map((detail, detailIndex) => (
-                        <p key={detailIndex} className="text-gray-600 text-sm">
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  className="group"
+                >
+                  <Card className="text-center h-full shadow-xl hover:shadow-2xl transition-all duration-300 border-0 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                    <CardHeader className="relative z-10">
+                      <div className="mx-auto mb-6 p-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full w-fit shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <info.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-xl text-gray-900 group-hover:text-blue-700 transition-colors mb-4">{info.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="relative z-10">
+                      <div className="space-y-2">
+                        {info.details.map((detail, detailIndex) => (
+                          <p key={detailIndex} className="text-gray-600 leading-relaxed">
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -227,7 +295,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-16 bg-white">
+      <section id="contact-form" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -448,54 +516,65 @@ export default function Contact() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Questions fréquentes
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <Badge className="mb-6 bg-orange-50 text-orange-700 border-orange-200">
+                <AlertCircle className="w-4 h-4 mr-2" />
+                Questions Fréquentes
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Vos questions,
+                <span className="block text-blue-600">nos réponses</span>
               </h2>
-              <p className="text-xl text-gray-600">
-                Réponses aux questions les plus courantes de nos clients
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Découvrez les réponses aux questions les plus courantes de nos clients 
+                pour mieux comprendre nos services
               </p>
-            </div>
+            </motion.div>
             
             <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Quel est le délai d'intervention pour un audit ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Nous planifions généralement les audits gratuits sous 48h. Pour les urgences, 
-                    nous intervenons dans les 4 heures suivant votre appel.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Proposez-vous des contrats de maintenance ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Oui, nous proposons différents niveaux de contrats de maintenance adaptés à vos besoins, 
-                    du support basique au support premium 24/7 avec intervention garantie.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Intervenez-vous en dehors du Luxembourg ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Nous intervenons principalement au Luxembourg mais pouvons étendre nos services 
-                    dans la Grande Région (Belgique, France, Allemagne) pour les projets importants.
-                  </p>
-                </CardContent>
-              </Card>
+              {[
+                {
+                  question: "Quel est le délai d'intervention pour un audit ?",
+                  answer: "Nous planifions généralement les audits gratuits sous 48h. Pour les urgences, nous intervenons dans les 4 heures suivant votre appel."
+                },
+                {
+                  question: "Proposez-vous des contrats de maintenance ?",
+                  answer: "Oui, nous proposons différents niveaux de contrats de maintenance adaptés à vos besoins, du support basique au support premium 24/7 avec intervention garantie."
+                },
+                {
+                  question: "Intervenez-vous en dehors du Luxembourg ?",
+                  answer: "Nous intervenons principalement au Luxembourg mais pouvons étendre nos services dans la Grande Région (Belgique, France, Allemagne) pour les projets importants."
+                }
+              ].map((faq, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -2 }}
+                  className="group"
+                >
+                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 border-0 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                    <CardHeader className="relative z-10">
+                      <CardTitle className="text-xl text-gray-900 group-hover:text-orange-700 transition-colors">{faq.question}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="relative z-10">
+                      <p className="text-gray-600 leading-relaxed text-lg">{faq.answer}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
