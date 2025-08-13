@@ -121,11 +121,7 @@ export default function Home() {
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
-              37 ans d'expertise<br />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                télécoms Luxembourg
-              </span><br />
-              au service des entreprises
+              Branche testing
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
